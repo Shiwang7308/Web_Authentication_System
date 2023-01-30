@@ -16,13 +16,17 @@ app.use(bodyParser.urlencoded({extended: true}));
 mongoose.connect('mongodb://localhost:27017/Auth')
 
 app.post('/api/register', async (req, res) => {
-	console.log(req.body)
+	console.log(req.body) 
 	try {
-        console.log("reqbody: ",req.body);		
+        // console.log("reqbody: ",req.body);		
 		const data = await User.create({
-			name: req.body.name,
+			firstName: req.body.firstName,
+            lastName: req.body.lastName,
 			email: req.body.email,
 			password: req.body.password,
+            gender: req.body.gender,
+            country: req.body.country,
+            checkbox: req.body.checkbox
 		})
 		res.status(201).json({
             data: data,
@@ -46,24 +50,11 @@ app.post('/api/login', async (req, res) => {
 		email: req.body.email,
         password: req.body.password
 	})
-     console.log(user);
+    //  console.log(user);
      res.json({
         user
      })
-	// if (user) {
-	// 	 return res.status(201).json({
-    //         success: true,
-    //         messange: "Successfully fetched user detail from database",
-    //         err: {}
-    //     })
-	// }
-    // else
-    // {
-    //     return res.status(500).json({
-    //         success: false,
-    //         messange: "User not found! Please check emailID and password again",
-    //      });
-    // }
+	
 })
 
 app.listen(3001, () => {

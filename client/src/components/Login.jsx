@@ -1,7 +1,13 @@
+import React from 'react'
+import '../index.css'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-function App() {
-	const [email, setEmail] = useState('')
+
+export default function Sample2() {
+    const navigate = useNavigate()
+
+    const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
 	async function loginUser(event) {
@@ -22,34 +28,46 @@ function App() {
         console.log("data: ",data);
 		if (data.user==null) {
 			
-			alert('Please check your username and password')
+			alert('Please check your email and password')
+             setEmail("");
+             setPassword("");
 		} else {
-			alert('Login Successful')
+			alert('Login Successful');
+            navigate('/dashboard')
 		}
 	}
 
-	return (
-		<div>
-			<h1>Login</h1>
-			<form onSubmit={loginUser}>
-				<input
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-					type="email"
-					placeholder="Email"
-				/>
-				<br />
-				<input
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-					type="password"
-					placeholder="Password"
-				/>
-				<br />
-				<input type="submit" value="Login" />
-			</form>
-		</div>
-	)
-}
+  return (
+        <div className="bg-light body">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-4 bg-dark m-auto">
+                        <h2 className='text-center text-light pt-3 mb-4'>Login</h2>
+                        
+                        <form id="myForm" onSubmit={loginUser}>
+                            <div className="input-group mb-3">
+                                <span className="input-group-text"><i className='fa fa-envelope'></i></span>
+                                <input role="button" type="email" className='form-control' placeholder='Email'
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </div>
+                            <div className="input-group mb-3">
+                                <span className="input-group-text"><i className='fa fa-lock'></i></span>
+                                <input type="password" className='form-control' placeholder='Password'
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </div>
+                            
+                           <div className="d-grid mb-3">
+                            <button type="submit" className="btn btn-primary" value="signin">SIGN IN</button>
+                           </div>
+                        </form>
 
-export default App
+                    </div>
+                </div>
+            </div>
+        </div>
+  )
+}
