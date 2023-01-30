@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 mongoose.connect('mongodb://localhost:27017/Auth')
 
 app.post('/api/register', async (req, res) => {
-	// console.log(req.body)
+	console.log(req.body)
 	try {
         console.log("reqbody: ",req.body);		
 		const data = await User.create({
@@ -35,33 +35,35 @@ app.post('/api/register', async (req, res) => {
         return res.status(500).json({
            data: {},
            success: false,
-           messange: "Not able to create a user entry",
-           err: error
+           messange: "Not able to create a user entry"
         });
 	}
 })
 
-app.get('/api/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
     console.log(req.body);
 	const user = await User.findOne({
 		email: req.body.email,
         password: req.body.password
 	})
-
-	if (user) {
-		 return res.status(201).json({
-            success: true,
-            messange: "Successfully fetched user detail from database",
-            err: {}
-        })
-	}
-    else
-    {
-        res.status(500).json({
-            success: false,
-            messange: "User not found! Please check emailID and password again",
-         });
-    }
+     console.log(user);
+     res.json({
+        user
+     })
+	// if (user) {
+	// 	 return res.status(201).json({
+    //         success: true,
+    //         messange: "Successfully fetched user detail from database",
+    //         err: {}
+    //     })
+	// }
+    // else
+    // {
+    //     return res.status(500).json({
+    //         success: false,
+    //         messange: "User not found! Please check emailID and password again",
+    //      });
+    // }
 })
 
 app.listen(3001, () => {
