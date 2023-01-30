@@ -23,10 +23,16 @@ function App() {
 			}),
 		})
 
-		const data = await response.json()
-
-		if (data.status === 'ok') {
-			navigate.push('/login')
+		const res = await response.json()
+         console.log(res);
+		if (res.success === true) {
+			navigate('/login')
+		}
+		else
+		{
+		      window.onload = ()=>{
+				alert("Something went wrong! Plese Try again")
+			  }
 		}
 	}
 
