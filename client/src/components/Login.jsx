@@ -33,7 +33,8 @@ export default function Sample2() {
              setPassword("");
 		} else {
 			alert('Login Successful');
-            navigate('https://www.google.com/')
+            // navigate('/dashboard')
+            window.location.replace('https://www.google.com/')
 		}
 	}
 
