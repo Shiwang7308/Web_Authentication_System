@@ -34,7 +34,7 @@ export default function Sample2() {
 		} else {
 			alert('Login Successful');
             // navigate('/dashboard')
-            window.location.replace('https://www.google.com/')
+            window.location.replace('https://poornima-hack-mps8.vercel.app/index.html')
 		}
 	}
 
