@@ -34,7 +34,7 @@ export default function Sample2() {
 		} else {
 			alert('Login Successful');
             // navigate('/dashboard')
-            window.location.replace('https://piic-hack-2-u5wy.vercel.app/')
+            window.location.replace('https://hackathon-piic-logout-final1.vercel.app/')
 		}
 	}
 
